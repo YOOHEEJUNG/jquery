@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+         <!-- jquery -->
+         <script src="js/jquery-3.6.3.min.js"></script>
+    
+
+</head>
+<body>
+    
+    <button id="btn">이벤트 등록</button>
+
+    <input type="text" id="tag">
+
+    <select id="sel">
+        <option>1</option>
+        <option>2</option>
+    </select>
+
+    <div style="background-color: red;" id="mos">헬로우</div>
+
+    <script>
+        //클릭
+        $("#btn").click(function(){
+            console.log("click");
+        })
+
+        //키관련 이벤트
+        $("#tag").keyup(function(){
+            console.log("key~");
+        })
+
+        //체인지
+        $("#sel").change(function(){
+            console.log("change");
+        })
+
+        //마우스 관련 이벤트
+        //마우스가 틀 안으로 들어갔을 때
+        $("#mos").mouseenter(function(){
+            console.log("mouse enter");
+        })
+
+        //마우스가 떠났을 때
+        $("#mos").mouseleave(function(){
+            console.log("mouse leave");
+        })
+
+        </script>
+
+        <hr/>
+
+        <h3>이벤트 위임방식 on()</h3>
+
+        <div id="box"></div>
+ 
+        <script>
+            setTimeout(function(){
+                var str="";
+                str += "<a href='#'>태그1</a>";
+                str += "<a href='#'>태그2</a>";
+                str += "<a href='#'>태그3</a>";
+                $("#box").html(str);
+            }, 2000); //2초 뒤에 태그 생성
+
+
+            // 아주 어림도 없는 방법
+            // $("a[href='#']").click(function(){
+            //     console.log("a링크 실행");
+            // })
+
+            //(이벤트 종류, 위임시킬 선택자, 핸들러)
+            $("#box").on("click", "a", function(){
+                event.preventDefault(); //고유 이벤트 중지
+                console.log("신기하지?")
+            })
+
+
+        </script>
+</body>
+</html>
